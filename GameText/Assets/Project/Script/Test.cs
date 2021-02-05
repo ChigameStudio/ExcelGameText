@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using ProjectSystem;
+using System;
 public class Test : MonoBehaviour
 {
 
@@ -14,8 +15,7 @@ public class Test : MonoBehaviour
     void Start()
     {
         var data = ExcelSystem.GetExcelLoadData("D:/Desk/Git/Git_GameText/GameText/GameText/Assets/Project/Data/Excel/Book1.xlsx", "Sheet1");
-        data.CovertDataList(ref a, 0, "AS");
-        data.CovertDataList(ref hh, 0, "DD");
+        IComparable com = a;
     }
 
     // Update is called once per frame

@@ -64,6 +64,16 @@ namespace ProjectSystem
                 get { return group_id_; }
             }
             private List<Data> list_data_group_ = new List<Data>();
+            public uint GetListDataCount
+            {
+                get { return (uint)list_data_group_.Count; }
+            }
+
+            public void Clear()
+            {
+                list_data_group_.Clear();
+            }
+
             public void SetUp(uint value_id)
             {
                 group_id_ = value_id;
@@ -96,11 +106,24 @@ namespace ProjectSystem
         public class DataControl
         {
             private List<DataGroup> list_data_group_ = new List<DataGroup>();
+            public uint GetDataGroupCount
+            {
+                get { return (uint)list_data_group_.Count; }
+            }
             List<string> list_data_name_ = new List<string>();
             public void SetUp(List<string> value_list_data_name)
             {
                 list_data_group_ = new List<DataGroup>();
                 list_data_name_ = value_list_data_name;
+            }
+
+            public void Clear()
+            {
+                list_data_name_.Clear();
+                foreach(var clear in list_data_group_)
+                {
+                    clear.Clear();
+                }
             }
 
 
@@ -177,46 +200,72 @@ namespace ProjectSystem
                 return list_data_name_[(int)search_list_data_name_index];
             }
 
-            public void CovertDataList(ref int out_object,int search_list_data_group_index,string search_data_name)
+            public void CovertDataList(ref IComparable out_object, int search_list_data_group_index, string search_data_name)
+            {
+                if (out_object.GetType() == typeof(int))
+                {
+                    int value_data = (int)out_object;
+                    out_object = ConvertDataInt(ref value_data, search_list_data_group_index, search_data_name);
+                }
+                else if (out_object.GetType() == typeof(float))
+                {
+                    float value_data = (float)out_object;
+                    out_object = ConvertDataFloat(ref value_data, search_list_data_group_index, search_data_name);
+                }
+                else if (out_object.GetType() == typeof(string))
+                {
+                    string value_data = (string)out_object;
+                    out_object = ConvertDataString(ref value_data, search_list_data_group_index, search_data_name);
+                }
+                else if (out_object.GetType() == typeof(bool))
+                {
+                    bool value_data = (bool)out_object;
+                    out_object = ConvertDataBool(ref value_data, search_list_data_group_index, search_data_name);
+                }
+            }
+
+            private int ConvertDataInt(ref int out_object,int search_list_data_group_index,string search_data_name)
             {
                 var data = GetDataNameIndex((uint)search_list_data_group_index,search_data_name);
-                if (data == null) return;
+                if (data == null) return 0;
 
                 string data_object = data.GetDataObject;
 
                 if(out_object.GetType() == typeof(int))
                 {
-                    out_object = int.Parse(data_object);
+                    return out_object = int.Parse(data_object);
                 }
-
+                return 0;
             }
 
-            public void CovertDataList(ref float out_object, int search_list_data_group_index, string search_data_name)
+            private float ConvertDataFloat(ref float out_object, int search_list_data_group_index, string search_data_name)
             {
                 var data = GetDataNameIndex((uint)search_list_data_group_index, search_data_name);
-                if (data == null) return;
+                if (data == null) return float.Epsilon;
 
                 string data_object = data.GetDataObject;
 
                 if (out_object.GetType() == typeof(int))
                 {
-                    out_object = float.Parse(data_object);
+                    return out_object = float.Parse(data_object);
                 }
+
+                return float.Epsilon;
 
             }
 
-            public void CovertDataList(ref string out_object, int search_list_data_group_index, string search_data_name)
+            private string ConvertDataString(ref string out_object, int search_list_data_group_index, string search_data_name)
             {
                 var data = GetDataNameIndex((uint)search_list_data_group_index, search_data_name);
-                if (data == null) return;
+                if (data == null) return "";
 
                 string data_object = data.GetDataObject;
 
-                out_object = data_object;
+                return out_object = data_object;
 
             }
 
-            public bool CovertDataList(ref bool out_object, int search_list_data_group_index, string search_data_name)
+            private bool ConvertDataBool(ref bool out_object, int search_list_data_group_index, string search_data_name)
             {
                 var data = GetDataNameIndex((uint)search_list_data_group_index, search_data_name);
                 if (data == null) return false;
