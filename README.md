@@ -8,6 +8,7 @@
 <p> BaseExcelScriptableObject<T> と　BaseComposition を継承したClassを作成します </p>
 
 ```
+[System.Serializable]
 public class CompositionHoge : BaseComposition
 {
     [SerializeField]
@@ -114,3 +115,22 @@ public class CompositionHoge : BaseComposition
      
 <p>これを作成すると、Inspectorはこんな感じになります</p>
 
+![test excel](/Hoge_Data.png)
+
+<p>右の項目で、PATHとSHHETとという文字を入れるところを入力してください</p>
+
+![test excel](/Hoge_Data02.png)
+
+<p>PATH は、参照するエクセルの絶対パス</p>
+<p>SHEETは、参照するエクセルのシート名</p>
+<p>list_data_object_に、順番通り代入されます</p>
+<p>また、そこからJSON化したいとき、SAVE_JSONなどすれば、Json化されます</p>
+
+```
+         if (GUILayout.Button("SAVE_JSON"))
+        {
+            ProjectSystem.ExcelJsonSystem<CompositionHoge>.SaveJson(chara.GetListData(),
+            "D:/Desk/Git/Git_GameText/GameText/GameText/Assets/Project/Data/Excel",
+            "GameText");
+        }
+```
