@@ -1,4 +1,7 @@
 # ExcelGameText
+<p>参考にしたサイト</p>
+https://kou-yeung.hatenablog.com/entry/2015/12/31/014611<br>
+https://www.nowonbun.com/214.html<br>
 
 # 用意するもの
 ![test excel](/Excel.png)
