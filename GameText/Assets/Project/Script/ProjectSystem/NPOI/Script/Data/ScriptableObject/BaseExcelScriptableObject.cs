@@ -9,10 +9,14 @@ using UnityEditor;
 public class BaseExcelScriptableObject<T> : ScriptableObject where T : BaseComposition,new()
 {
     [SerializeField]
-    protected List<T> lis_data_object_ = new List<T>();
+    protected ListDataObject<T> lis_data_object_ = new ListDataObject<T>();
     public List<T> GetListData()
     {
-        return lis_data_object_;
+        return lis_data_object_.GetListDataObject();
+    }
+    public void SetListData(List<T> value_list_data)
+    {
+        lis_data_object_.SetListDataObject(value_list_data);
     }
 
     [SerializeField]
@@ -30,23 +34,29 @@ public class BaseExcelScriptableObject<T> : ScriptableObject where T : BaseCompo
         get { return excel_load_sheet_name_; }
     }
 
+    public BaseExcelScriptableObject()
+    {
+
+    }
+
     /// <summary>
     /// 初期化
     /// </summary>
     protected void Init()
     {
-        lis_data_object_ = new List<T>();
+        lis_data_object_ = new ListDataObject<T>();
+        lis_data_object_.SetUp();
     }
     public void Create()
     {
         Init();
-        lis_data_object_ = CreateExcelData<T>.CreateAuto(excel_load_path_, excel_load_sheet_name_);
+        lis_data_object_.SetListDataObject(CreateExcelData<T>.CreateAuto(excel_load_path_, excel_load_sheet_name_));
     }
 
     public void CreateManual()
     {
         Init();
-        lis_data_object_ = CreateExcelData<T>.CreateManual(excel_load_path_, excel_load_sheet_name_);
+        lis_data_object_.SetListDataObject(CreateExcelData<T>.CreateManual(excel_load_path_, excel_load_sheet_name_));
     }
 }
 #endif

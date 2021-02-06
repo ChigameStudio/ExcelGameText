@@ -35,7 +35,24 @@ public class TestInspector : Editor
             EditorUtility.SetDirty(chara);
             AssetDatabase.SaveAssets();
         }
-        
+
+        if (GUILayout.Button("SAVE_JSON"))
+        {
+            ProjectSystem.ExcelJsonSystem<ScenarioText>.SaveJson(chara.GetListData(),
+            "D:/Desk/Git/Git_GameText/GameText/GameText/Assets/Project/Data/Excel",
+            "GameText");
+        }
+        if (GUILayout.Button("LOAD_JSON"))
+        {
+            var list =  ProjectSystem.ExcelJsonSystem<ScenarioText>.LoadJson(chara.GetListData(),
+            "Assets/Project/Data/Excel/GameText.json");
+            chara.SetListData(list);
+        }
+        if(GUILayout.Button("CLEAR"))
+        {
+            chara.GetListData().Clear();
+        }
+
         EditorUtility.SetDirty(chara); // Dirtyフラグを立てることで、Unity終了時に勝手に.assetに書き出す
     }
 }

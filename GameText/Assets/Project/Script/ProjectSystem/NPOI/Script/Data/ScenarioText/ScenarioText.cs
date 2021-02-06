@@ -43,6 +43,7 @@ public class ScenarioText : BaseComposition
         sub_text_ = "";
     }
 
+
     public override void ManualSetUp(ref DataFrameGroup data_grop, ref ProjectSystem.ExcelSystem.DataGroup excel_data_group)
     {
         data_grop.AddData("ID",nameof(id_),id_);
