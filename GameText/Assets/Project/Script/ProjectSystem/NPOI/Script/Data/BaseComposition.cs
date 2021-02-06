@@ -1,13 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using ProjectSystem;
 /// <summary>
 /// ベースデータ
 /// </summary>
 [System.Serializable]
 public class BaseComposition
 {
+    public virtual void ManualSetUp(ref DataFrameGroup data_grop,ref ExcelSystem.DataGroup excel_data_group)
+    {
+    }
+
     public uint CountField()
     {
         return (uint)this.GetType().GetFields(System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).Length;

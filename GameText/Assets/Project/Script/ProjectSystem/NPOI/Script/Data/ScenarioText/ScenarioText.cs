@@ -9,6 +9,13 @@ using System.Reflection;
 public class ScenarioText : BaseComposition
 {
     [SerializeField]
+    private int id_ = 0;
+    public ref int GeID()
+    {
+        return ref id_;
+    }
+
+    [SerializeField]
     private string name_ = "D:/Desk/Git/Git_GameText/GameText/GameText/Assets/Project/Data/Excel/Book1.xlsx";
     public ref string GetName()
     {
@@ -36,6 +43,12 @@ public class ScenarioText : BaseComposition
         sub_text_ = "";
     }
 
-
+    public override void ManualSetUp(ref DataFrameGroup data_grop, ref ProjectSystem.ExcelSystem.DataGroup excel_data_group)
+    {
+        data_grop.AddData("ID",nameof(id_),id_);
+        data_grop.AddData("テキスト", nameof(name_), name_);
+        data_grop.AddData("名前", nameof(text_), text_);
+        data_grop.AddData("サブテキスト", nameof(sub_text_), sub_text_);
+    }
 
 }

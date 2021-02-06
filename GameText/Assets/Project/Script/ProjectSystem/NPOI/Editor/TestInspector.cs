@@ -8,20 +8,35 @@ using UnityEditor;
 [CustomEditor(typeof(ExcelScenarioText))]
 public class TestInspector : Editor
 {
+
     public override void OnInspectorGUI()
     {
+        base.OnInspectorGUI();
         ExcelScenarioText chara = target as ExcelScenarioText;
+
+
+        EditorGUI.BeginChangeCheck();
+
+        GUILayout.BeginVertical();
+        GUILayout.Label("PATH");
+        chara.ExcelLoadPath = GUILayout.TextField(chara.ExcelLoadPath);
+        GUILayout.EndVertical();
+
+        GUILayout.BeginVertical();
+        GUILayout.Label("SHEET");
+        chara.ExcelLoadSheetName = GUILayout.TextField(chara.ExcelLoadSheetName);
+        GUILayout.EndVertical();
+
+        
+
         if (GUILayout.Button("CREATE"))
         {
-            chara.Create();
+            chara.CreateManual();
+            EditorUtility.SetDirty(chara);
+            AssetDatabase.SaveAssets();
         }
-        if(chara.GetScenario != null)
-        {
-            foreach(var obj in chara.GetScenario.GetListDataObject)
-            {
-                GUILayout.TextField("TEXT", "aaaa");
-            }
-        }
+        
+        EditorUtility.SetDirty(chara); // Dirtyフラグを立てることで、Unity終了時に勝手に.assetに書き出す
     }
 }
 #endif

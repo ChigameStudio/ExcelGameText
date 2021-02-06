@@ -8,36 +8,31 @@ using UnityEditor;
 /// <summary>
 /// Excelデータ(基礎)
 /// </summary>
-public class BaseExcelData<T>  where T : BaseComposition,new()
+public static class CreateExcelData<T>  where T : BaseComposition,new()
 {
-    /// <summary>
-    /// Excelのパス
-    /// </summary>
-    protected string excel_load_path_ = "D:/Desk/Git/Git_GameText/GameText/GameText/Assets/Project/Data/Excel/Book1.xlsx";
-    /// <summary>
-    /// Excelの参照Sheet名
-    /// </summary>
-    protected string excel_load_sheet_name_ = "Sheet1";
 
-    [SerializeField]
-    protected List<T> list_data_object_ = new List<T>();
-    public List<T> GetListDataObject
-    {
-        get { return list_data_object_; }
-    }
-    protected DataFrameControl<ScenarioText> data_scenario_;
 
-    public virtual void Create() 
+    public static List<T> CreateAuto(string excel_load_path,string excel_load_sheet_name_) 
     {
-        Init();
-        SetUp(LoadExcel());
+        List<T> list_data_object_ = new List<T>();
+        DataFrameControl<T> data_frame_control_ = new DataFrameControl<T>();
+        Init(ref list_data_object_,ref data_frame_control_);
+        return SetUp(LoadExcel(excel_load_path, excel_load_sheet_name_),ref list_data_object_,ref data_frame_control_);
     }
-    
-    protected void  Init() 
+
+    public static List<T> CreateManual(string excel_load_path, string excel_load_sheet_name_)
     {
-        InitExcelConstructionControl();
+        List<T> list_data_object_ = new List<T>();
+        DataFrameControl<T> data_frame_control_ = new DataFrameControl<T>();
+        Init(ref list_data_object_, ref data_frame_control_);
+        return SetUp(LoadExcel(excel_load_path, excel_load_sheet_name_), ref list_data_object_, ref data_frame_control_,true);
     }
-    protected virtual BaseComposition InitAdd(DataFrameGroup data_grop,ExcelSystem.DataGroup excel_data_group)
+
+    private static void  Init(ref List<T> list_data_object,ref DataFrameControl<T> data_frame_control) 
+    {
+        InitExcelConstructionControl(list_data_object,data_frame_control);
+    }
+    private static BaseComposition InitAdd(DataFrameGroup data_grop,ExcelSystem.DataGroup excel_data_group)
     {
         T data_object = new T();
         for(uint count = 0; count < excel_data_group.GetListDataCount; count++)
@@ -49,19 +44,25 @@ public class BaseExcelData<T>  where T : BaseComposition,new()
         }
         return data_object;
     }
-    protected void InitExcelConstructionControl()
+
+    private static BaseComposition InitAddManual(DataFrameGroup data_grop, ExcelSystem.DataGroup excel_data_group)
     {
-        data_scenario_ = new DataFrameControl<ScenarioText>();
-        list_data_object_ = new List<T>();
+        T data_object = new T();
+        data_object.ManualSetUp(ref data_grop, ref excel_data_group);
+        return data_object;
+    }
+    
+    private static void InitExcelConstructionControl(List<T> list_data_object, DataFrameControl<T> data_frame_control)
+    {
     }
 
-    protected virtual ExcelSystem.DataControl LoadExcel()
+    private static ExcelSystem.DataControl LoadExcel(string excel_load_path, string excel_load_sheet_name_)
     {
-        return ExcelSystem.GetExcelLoadData(excel_load_path_, excel_load_sheet_name_);
+        return ExcelSystem.GetExcelLoadData(excel_load_path, excel_load_sheet_name_);
     }
-    protected virtual void SetUp(ExcelSystem.DataControl data_control)
+    private static List<T> SetUp(ExcelSystem.DataControl data_control, ref List<T> list_data_object, ref DataFrameControl<T> data_frame_control,bool manual = false)
     {
-        if (data_control == null) return;
+        if (data_control == null) return null;
 
 
 
@@ -69,8 +70,10 @@ public class BaseExcelData<T>  where T : BaseComposition,new()
         {
             var data_group = data_control.GetDataGroupIndex(count);
             if (data_group == null) continue;
-            var data_frame_group = data_scenario_.AddDataFrameGrop();
-            T data_object = (T)InitAdd(data_frame_group, data_group);
+            var data_frame_group = data_frame_control.AddDataFrameGrop();
+            T data_object;
+            if (manual == false) data_object = (T)InitAdd(data_frame_group, data_group);
+            else data_object = (T)InitAddManual(data_frame_group,data_group);
             for (uint data_count = 0; data_count < data_group.GetListDataCount; data_count++)
             {
                 var data = data_group.GetData(data_count);
@@ -81,10 +84,12 @@ public class BaseExcelData<T>  where T : BaseComposition,new()
                 data_frame.Data = com;
                 data_object.SetValue(data_frame.VariableName,data_frame.Data);
             }
-            list_data_object_.Add(data_object);
+            list_data_object.Add(data_object);
         }
         data_control.Clear();
-        data_scenario_.Clear();
+        data_frame_control.Clear();
+
+        return list_data_object;
     }
 }
 
