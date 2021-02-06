@@ -3,19 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using ProjectSystem;
 using System;
+
 public class Test : MonoBehaviour
 {
-
-    [SerializeField]
-    private int a = 0;
-
-    [SerializeField]
-    private string hh = "";
+    
+    public ListDataObject<ScenarioText> data_ = new ListDataObject<ScenarioText>();
     // Start is called before the first frame update
     void Start()
     {
-        var data = ExcelSystem.GetExcelLoadData("D:/Desk/Git/Git_GameText/GameText/GameText/Assets/Project/Data/Excel/Book1.xlsx", "Sheet1");
-        IComparable com = a;
+        data_ = new ListDataObject<ScenarioText>();
+        ExcelJsonSystem<ScenarioText>.LoadJson(ref data_,
+            "Assets/Project/Data/Excel/GameText.json");
     }
 
     // Update is called once per frame

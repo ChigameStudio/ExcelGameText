@@ -44,7 +44,7 @@ public class TestInspector : Editor
         }
         if (GUILayout.Button("LOAD_JSON"))
         {
-            var list =  ProjectSystem.ExcelJsonSystem<ScenarioText>.LoadJson(chara.GetListData(),
+            var list =  ProjectSystem.ExcelJsonSystem<ScenarioText>.LoadJsonEditor(chara.GetListData(),
             "Assets/Project/Data/Excel/GameText.json");
             chara.SetListData(list);
         }
