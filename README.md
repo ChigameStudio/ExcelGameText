@@ -96,6 +96,7 @@ public class CompositionHoge : BaseComposition
             ProjectSystem.ExcelJsonSystem<CompositionHoge>.SaveJson(chara.GetListData(),
             "D:/Desk/Git/Git_GameText/GameText/GameText/Assets/Project/Data/Excel",
             "GameText");
+             AssetDatabase.Refresh();
         }
         if (GUILayout.Button("LOAD_JSON"))
         {
