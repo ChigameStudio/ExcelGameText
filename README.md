@@ -134,3 +134,4 @@ public class CompositionHoge : BaseComposition
             "GameText");
         }
 ```
+<p>ExcelJsonSystemの第二引数は、保存したjsonの絶対パス、第三引数が保存したい名前</p>
