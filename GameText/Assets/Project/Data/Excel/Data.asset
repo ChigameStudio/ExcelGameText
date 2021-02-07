@@ -14,117 +14,56 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lis_data_object_:
     list_data_object_:
+    - id_: 0
+      name_: 0
+      text_: "\u304A\u5B22\u69D8"
     - id_: 1
-      name_: 3
-      text_: 2
-      sub_text_: 56
+      name_: 1
+      text_: "\u306F\u3044\u3001\u306A\u3093\u3067\u3057\u3087\u3046     "
     - id_: 2
-      name_: 3
-      text_: 2
-      sub_text_: 56
+      name_: 0
+      text_: "\u3054\u6328\u62F6\u304C\u9045\u308C\u3066\u7533\u3057\u8A33\u3042\u308A\u307E\u305B\u3093\n\u79C1\u672C\u65E5\u3088\u308A\u3053\u306E\u5C4B\u6577\u306B\u52D9\u3081\u3055\u305B\u3066\u3044\u305F\u3060\u304D\u307E\u3059\n\u53E4\u8CC0\u3068\u7533\u3057\u307E\u3059"
     - id_: 3
-      name_: 3
-      text_: 2
-      sub_text_: 56
+      name_: 0
+      text_: "\u304A\u5B22\u69D8\u3068\u540C\u69D8\u306B\n\u79C1\u9054\u3082\u4ECA\u65E5\u6B64\u51E6\u306B\u5230\u7740\u3057\u305F\u3070\u304B\u308A\u3067\u3057\u3066\u2026"
     - id_: 4
-      name_: 3
-      text_: 2
-      sub_text_: 56
+      name_: 2
+      text_: "\u2026\u540C\u3058\u304F\u7D50\u57CE\u3068\u7533\u3057\u307E\u3059"
     - id_: 5
-      name_: 3
-      text_: 2
-      sub_text_: 56
+      name_: 1
+      text_: "\u305D\u3046\u306A\u306E\u306D\u3000\u304A\u7236\u69D8\u3068\u306F\u77E5\u308A\u5408\u3044\u306A\u306E\uFF1F"
     - id_: 6
-      name_: 3
-      text_: 2
-      sub_text_: 56
+      name_: 0
+      text_: "\u306F\u3044\u3000\u3000\u3000\u3000\n\u6570\u5E74\u524D\u307E\u3067\u540C\u3058\u7814\u7A76\u6240\u306B\u914D\u5C5E\u3055\u308C\u3066\u304A\u308A\u307E\u3057\u305F"
     - id_: 7
-      name_: 3
-      text_: 2
-      sub_text_: 56
-    - id_: 8
-      name_: 3
-      text_: 2
-      sub_text_: 56
+      name_: 0
+      text_: "\u4ECA\u65E5\u306F\u304A\u5BA2\u69D8\u304C\u591A\u3044\u306E\u3067\u4F8B\u5916\u3067\u3059\u304C\n\u660E\u65E5\u304B\u3089\u306F\u79C1\u304C\u5C4B\u6577\u5185\u306E\u7BA1\u7406\u3092\n\u660E\u77F3\u306F\u5EAD\u5E2B\u517C\u904B\u8EE2\u624B\u3068\u3057\u3066\u5728\u4E2D\u81F4\u3057\u307E\u3059"
     - id_: 9
-      name_: 3
-      text_: 2
-      sub_text_: 56
+      name_: 2
+      text_: "\u2026\u3000          "
     - id_: 10
-      name_: 3
-      text_: 2
-      sub_text_: 56
+      name_: 1
+      text_: "\u3058\u3083\u3042\u3001\u660E\u65E5\u304B\u3089\u306F4\u4EBA\u3067\u751F\u6D3B\u3059\u308B\u306E\u306D"
     - id_: 11
-      name_: 3
-      text_: 2
-      sub_text_: 56
+      name_: 0
+      text_: "\u3044\u3048\u30013\u4EBA\u3067\u3059"
     - id_: 12
-      name_: 3
-      text_: 2
-      sub_text_: 56
+      name_: 1
+      text_: "\u305D\u308C\u3058\u3083\u3042\u304A\u7236\u69D8\u306F\u3069\u3046\u306A\u308B\u306E\uFF1F"
     - id_: 13
-      name_: 3
-      text_: 2
-      sub_text_: 56
+      name_: 0
+      text_: "\u7DCF\u76E3\u306F...\u3044\u3048\u3001\u65E6\u90A3\u69D8\u306F\u660E\u65E5\u304B\u3089\u66AB\u304F\u306E\u9593\n\u7814\u7A76\u6240\u306E\u65B9\u306B\u6EDE\u5728\u3055\u308C\u308B\u3068\u3044\u3046\u304A\u8A71\u3067\u3057\u305F\u304C\u2026"
     - id_: 14
-      name_: 14
-      text_: 14
-      sub_text_: 14
+      name_: 0
+      text_: "\u65E6\u90A3\u69D8\u304B\u3089\u76F4\u63A5\u304A\u805E\u304D\u306B\u306A\u3063\u3066\u3044\u306A\u3044\u306E\u3067\u3059\u306D"
     - id_: 15
-      name_: 15
-      text_: 15
-      sub_text_: 14
+      name_: 1
+      text_: "\u305D\u3046\u306A\u306E\u2026\u79C1\u306F\u3066\u3063\u304D\u308A\u2026"
     - id_: 16
-      name_: 16
-      text_: 16
-      sub_text_: 14
+      name_: 0
+      text_: "...\u65E6\u90A3\u69D8\u306F\u4ECA\u304C\u4E00\u756A\u5FA1\u5FD9\u3057\u3044\u3067\u3057\u3087\u3046\u3057\u3001\n\u3082\u3068\u3088\u308A\u71B1\u4E2D\u306A\u3055\u308B\u3068\u4E00\u76F4\u7DDA\u306A\u65B9\u3067\u3059\u304B\u3089..."
     - id_: 17
-      name_: 17
-      text_: 17
-      sub_text_: 14
-    - id_: 18
-      name_: 18
-      text_: 18
-      sub_text_: 14
-    - id_: 19
-      name_: 19
-      text_: 19
-      sub_text_: 14
-    - id_: 20
-      name_: 20
-      text_: 20
-      sub_text_: 14
-    - id_: 21
-      name_: 21
-      text_: 21
-      sub_text_: 14
-    - id_: 22
-      name_: 22
-      text_: 22
-      sub_text_: 14
-    - id_: 23
-      name_: 23
-      text_: 23
-      sub_text_: 14
-    - id_: 24
-      name_: 24
-      text_: 24
-      sub_text_: 14
-    - id_: 25
-      name_: 25
-      text_: 25
-      sub_text_: 14
-    - id_: 26
-      name_: 26
-      text_: 26
-      sub_text_: 14
-    - id_: 27
-      name_: 27
-      text_: 27
-      sub_text_: 14
-    - id_: 28
-      name_: 28
-      text_: 28
-      sub_text_: 14
-  excel_load_path_: D:\Desk\Git\Git_GameText\GameText\GameText\Assets\Project\Data\Excel\Book1.xlsx
-  excel_load_sheet_name_: Sheet1
+      name_: 1
+      text_: "\u5927\u4E08\u592B\u3088  \u305D\u308C\u306B\u79C1\u3060\u3063\u3066\u660E\u65E5\u304B\u3089\u5B66\u6821\u306A\u306E\u3060\u3057\n\u307E\u305F\u4E00\u6BB5\u843D\u3057\u305F\u9803\u306B\u4F1A\u3063\u305F\u65B9\u304C\u826F\u3044\u304B\u3082\u306D"
+  excel_load_path_: D:\Desk\Git\Git_GameText\GameText\GameText\Assets\Project\Data\Excel\textdata.xlsx
+  excel_load_sheet_name_: home_2F

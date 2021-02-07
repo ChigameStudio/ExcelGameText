@@ -41,6 +41,7 @@ public class TestInspector : Editor
             ProjectSystem.ExcelJsonSystem<ScenarioText>.SaveJson(chara.GetListData(),
             "D:/Desk/Git/Git_GameText/GameText/GameText/Assets/Project/Data/Excel",
             "GameText");
+            AssetDatabase.Refresh();
         }
         if (GUILayout.Button("LOAD_JSON"))
         {
@@ -56,4 +57,5 @@ public class TestInspector : Editor
         EditorUtility.SetDirty(chara); // Dirtyフラグを立てることで、Unity終了時に勝手に.assetに書き出す
     }
 }
+
 #endif

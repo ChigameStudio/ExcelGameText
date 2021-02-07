@@ -200,9 +200,15 @@ namespace ProjectSystem
                 return list_data_name_[(int)search_list_data_name_index];
             }
 
-            public void CovertDataList(ref IComparable out_object, int search_list_data_group_index, string search_data_name)
+            public void CovertDataList(ref object out_object, int search_list_data_group_index, string search_data_name)
             {
-                if (out_object.GetType() == typeof(int))
+                if(out_object.GetType().IsEnum == true)
+                {
+                    object change_type = out_object.GetType().GetField(out_object.ToString()).GetValue(out_object);
+                    ConvertDataEnum(ref change_type, search_list_data_group_index, search_data_name);
+                    out_object =  Enum.ToObject(out_object.GetType(), change_type);
+                }
+                else if (out_object.GetType() == typeof(int))
                 {
                     int value_data = (int)out_object;
                     out_object = ConvertDataInt(ref value_data, search_list_data_group_index, search_data_name);
@@ -222,6 +228,33 @@ namespace ProjectSystem
                     bool value_data = (bool)out_object;
                     out_object = ConvertDataBool(ref value_data, search_list_data_group_index, search_data_name);
                 }
+            }
+
+            private object ConvertDataEnum(ref object out_object, int search_list_data_group_index, string search_data_name)
+            {
+                var data = GetDataNameIndex((uint)search_list_data_group_index, search_data_name);
+                if (data == null) return 0;
+
+                string data_object = data.GetDataObject;
+
+                if(out_object.GetType() == typeof(int))
+                {
+                    string change_enum = out_object.GetType().GetEnumName(data_object);
+                    out_object = change_enum;
+                }
+                else
+                {
+                    foreach (var en in out_object.GetType().GetEnumValues())
+                    {
+                        if (en.ToString() == data_object.ToString())
+                        {
+                            out_object = en;
+                            return out_object;
+                        }
+                    }
+                }
+                return null;
+
             }
 
             private int ConvertDataInt(ref int out_object,int search_list_data_group_index,string search_data_name)

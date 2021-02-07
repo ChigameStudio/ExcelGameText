@@ -8,6 +8,13 @@ using System.Reflection;
 [System.Serializable]
 public class ScenarioText : BaseComposition
 {
+    public enum type
+    {
+        bulter,
+        yu,
+        driver
+    }
+
     [SerializeField]
     private int id_ = 0;
     public ref int GeID()
@@ -16,8 +23,8 @@ public class ScenarioText : BaseComposition
     }
 
     [SerializeField]
-    private string name_ = "D:/Desk/Git/Git_GameText/GameText/GameText/Assets/Project/Data/Excel/Book1.xlsx";
-    public ref string GetName()
+    private type name_ = type.yu;
+    public ref type GetName()
     {
        return ref name_; 
     }
@@ -29,27 +36,19 @@ public class ScenarioText : BaseComposition
         return ref text_;
     }
 
-    [SerializeField]
-    private string sub_text_ = "";
-    public ref string GetSubText()
-    {
-        return ref sub_text_;
-    }
 
     public ScenarioText()
     {
-        name_ = "";
+        name_ = type.yu;
         text_ = "";
-        sub_text_ = "";
     }
 
 
     public override void ManualSetUp(ref DataFrameGroup data_grop, ref ProjectSystem.ExcelSystem.DataGroup excel_data_group)
     {
-        data_grop.AddData("ID",nameof(id_),id_);
-        data_grop.AddData("テキスト", nameof(name_), name_);
-        data_grop.AddData("名前", nameof(text_), text_);
-        data_grop.AddData("サブテキスト", nameof(sub_text_), sub_text_);
+        data_grop.AddData("id", nameof(id_),id_);
+        data_grop.AddData("発言者", nameof(name_), name_);
+        data_grop.AddData("sentence", nameof(text_), text_);
     }
 
 }

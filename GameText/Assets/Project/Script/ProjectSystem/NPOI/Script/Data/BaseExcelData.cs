@@ -79,7 +79,7 @@ public static class CreateExcelData<T>  where T : BaseComposition,new()
                 var data = data_group.GetData(data_count);
                 if (data == null) continue;
                 DataFrame data_frame = data_frame_group.GetSearchDataFrame(data.GetDataName);
-                IComparable com = (IComparable)data_frame.Data;
+                object com = data_frame.Data;
                 data_control.CovertDataList(ref com, (int)count, data.GetDataName);
                 data_frame.Data = com;
                 data_object.SetValue(data_frame.VariableName,data_frame.Data);
