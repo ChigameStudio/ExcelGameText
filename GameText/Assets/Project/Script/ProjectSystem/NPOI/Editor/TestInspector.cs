@@ -43,13 +43,27 @@ public class TestInspector : Editor
             "GameText");
             AssetDatabase.Refresh();
         }
+        if (GUILayout.Button("SAVE_BINARY"))
+        {
+            ProjectSystem.ExcelBinarySystem<ScenarioText>.SaveBinary(chara.GetListData(),
+            "D:/Desk/Git/Git_GameText/GameText/GameText/Assets/Project/Data/Excel",
+            "GameText");
+            AssetDatabase.Refresh();
+        }
         if (GUILayout.Button("LOAD_JSON"))
         {
             var list =  ProjectSystem.ExcelJsonSystem<ScenarioText>.LoadJsonEditor(chara.GetListData(),
             "Assets/Project/Data/Excel/GameText.json");
             chara.SetListData(list);
         }
-        if(GUILayout.Button("CLEAR"))
+        if (GUILayout.Button("LOAD_BINARY"))
+        {
+            var list = ProjectSystem.ExcelBinarySystem<ScenarioText>.LoadBinary(
+            "D:/Desk/Git/Git_GameText/GameText/GameText/Assets/Project/Data/Excel",
+            "GameText");
+            chara.SetListData(list);
+        }
+        if (GUILayout.Button("CLEAR"))
         {
             chara.GetListData().Clear();
         }

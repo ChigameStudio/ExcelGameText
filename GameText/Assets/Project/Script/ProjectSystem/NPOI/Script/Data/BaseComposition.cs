@@ -46,7 +46,6 @@ public class BaseComposition
     {
         var fields = this.GetType().GetFields(System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
         if (fields == null) return;
-
         for (uint count = 0; count < CountField(); count++)
         {
             if (fields[count].Name == search_data_name)

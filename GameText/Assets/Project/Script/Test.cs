@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using ProjectSystem;
 using System;
+using System.IO;
 
 public class Test : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class Test : MonoBehaviour
 
     private int id = 1;
     private string text = "kMax";
+
+    private bool is_save_ = false;
     
     // Start is called before the first frame update
     void Start()
@@ -30,34 +33,22 @@ public class Test : MonoBehaviour
             "Assets/Project/Data/Excel/GameText.json");
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        object t = test.GetType().GetField(test.ToString()).GetValue(test);
-        Change(id, ref t);
-        Enum.TryParse(t.ToString(),out test);
+        byte[] test_byte = System.Text.Encoding.UTF8.GetBytes(text);
+        Debug.Log(test_byte.Length);
 
+        if (is_save_ == true) return;
 
-    }
+        FileStream fs = new FileStream("D:/Desk/Git/Git_GameText/GameText/GameText/Assets/Project/Data/Excel/Test.bin", FileMode.Create);
+        BinaryWriter bw = new BinaryWriter(fs);
 
-    private void Change(object value_enum,ref object test_enum)
-    {
-        if (value_enum.GetType() == typeof(int))
-        {
-            string  change_enum = test.GetType().GetEnumName(value_enum);
-            test_enum = change_enum;
-        }
-        else
-        {
-            foreach (var en in test.GetType().GetEnumValues())
-            {
-                if(en.ToString() == value_enum.ToString())
-                {
-                    test_enum = en;
-                    return;
-                }
-            }
-        }
-       
+        bw.Write(id);
+        bw.Write(test_byte.Length);
+        bw.Write(test_byte);
+
+        bw.Close();
+        fs.Close();
+        is_save_ = true;
     }
 }
